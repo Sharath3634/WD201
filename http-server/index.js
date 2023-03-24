@@ -1,20 +1,51 @@
-const { response } = require("express");
-const express=require("express")
-const app=express();
-const args = require("minimist")(process.argv.slice(2));
-app.get("/",function(req,res){
-    res.sendFile(__dirname+"/home.html");
+const http = require("http");
+const fs = require("fs");
+const argv = require("minimist")(process.argv.slice(2));
+
+let homeContent = "";
+let projectContent ="";
+let registrationContent ="";
+
+fs.readFile("home.html",(err,home)=>{
+    if(err){
+        throw err;
+    }
+    homeContent=home;
 });
 
-app.get("/project.html",function(req,res){
-    res.sendFile(__dirname+"/project.html");
+fs.readFile("project.html",(err,project)=>{
+    if(err){
+        throw err;
+    }
+    projectContent=project;
 });
 
-app.get("/registration",function(req,res){
-    res.sendFile(__dirname+"/registration.html");
+fs.readFile("registration.html",(err,registration)=>{
+    if(err){
+        throw err;
+    }
+    registrationContent = registration;
 });
 
-
-app.listen(5000, function(){
-    console.log("Server started on port: "+5000);
+const server = http.createServer((req,res)=>{
+    let url =req.url;
+    res.writeHeader(200,{"Content-type": "text/html"});
+    switch(url){
+        case "/projects":
+            res.write(projectContent);
+            res.end();
+            break;
+        case "/registration":
+            res.write(registrationContent);
+            res.end();
+            break;
+        default:
+            res.write(homeContent);
+            res.end();
+            break;
+    }
 });
+
+const port = argv.port || 3000;
+
+server.listen(port);
