@@ -31,11 +31,11 @@ const server = http.createServer((req,res)=>{
     let url =req.url;
     res.writeHeader(200,{"Content-type": "text/html"});
     switch(url){
-        case "/projects":
+        case "/project":
             res.write(projectContent);
             res.end();
             break;
-        case "/projects/registration":
+        case "/project/registration":
             res.write(registrationContent);
             res.end();
             break;
