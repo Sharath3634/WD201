@@ -12,7 +12,7 @@ const todoList = () => {
         const today = new Date()
         const overdueItems = [];
 
-        for(let i=0;i<all.length-1;i++){
+        for(let i=0;i<all.length;i++){
             if(all[i].dueDate<today.toISOString().split("T")[0]){
                 overdueItems.push(all[i])
             }
@@ -26,7 +26,7 @@ const todoList = () => {
       const dueTodayItems=[]
       const today = new Date()
 
-      for(let i=0;i<all.length-1;i++){
+      for(let i=0;i<all.length;i++){
         if(all[i].dueDate===today.toISOString().split("T")[0]){
             dueTodayItems.push(all[i])
         }
@@ -40,7 +40,7 @@ const todoList = () => {
       const dueLaterItems=[];
       const today = new Date();
 
-      for(let i=0;i<all.length-1;i++){
+      for(let i=0;i<all.length;i++){
         if(all[i].dueDate>today.toISOString().split("T")[0]){
             dueLaterItems.push(all[i])
         }
