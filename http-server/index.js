@@ -35,7 +35,7 @@ const server = http.createServer((req,res)=>{
             res.write(projectContent);
             res.end();
             break;
-        case "/registration":
+        case "/projects/registration":
             res.write(registrationContent);
             res.end();
             break;
