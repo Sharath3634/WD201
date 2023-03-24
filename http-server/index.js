@@ -39,6 +39,10 @@ const server = http.createServer((req,res)=>{
             res.write(registrationContent);
             res.end();
             break;
+        case "/registration":
+            res.write(registrationContent);
+            res.end();
+            break;
         default:
             res.write(homeContent);
             res.end();
